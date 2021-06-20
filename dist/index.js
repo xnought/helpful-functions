@@ -9,3 +9,4 @@ exports.isEmpty = void 0;
  */
 const isEmpty = (array) => !(array.length > 0);
 exports.isEmpty = isEmpty;
+//# sourceMappingURL=index.js.map
