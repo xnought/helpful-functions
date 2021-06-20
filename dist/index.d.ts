@@ -4,4 +4,4 @@
  * @param array given any type of array
  * @returns true or false answering the question -> isEmpty?
  */
-export const isEmpty = (array: any[]): boolean => !(array.length > 0);
+export declare const isEmpty: (array: any[]) => boolean;
