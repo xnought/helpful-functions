@@ -1,6 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logColors = exports.scheme1 = exports.copyArray = exports.isEmpty = void 0;
+exports.logColors = exports.scheme1 = exports.deepCopy = exports.copyArray = exports.isEmpty = void 0;
+const lodash_clonedeep_1 = __importDefault(require("lodash.clonedeep"));
 /**
  * Function that returns if the array is empty or not
  *
@@ -19,6 +23,17 @@ exports.isEmpty = isEmpty;
  */
 const copyArray = (array) => JSON.parse(JSON.stringify(array));
 exports.copyArray = copyArray;
+/**
+ * Creates a deepCopy of the element passed in
+ *
+ * @param item any item that we want to value copy
+ * @returns the same item but not with reference semantics
+ *
+ */
+const deepCopy = (item) => {
+    return lodash_clonedeep_1.default(item);
+};
+exports.deepCopy = deepCopy;
 /**
  * 10 good colors that work together
  */

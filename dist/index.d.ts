@@ -15,6 +15,14 @@ export declare const isEmpty: <T>(array: T[]) => boolean;
  */
 export declare const copyArray: <T>(array: T[]) => T[];
 /**
+ * Creates a deepCopy of the element passed in
+ *
+ * @param item any item that we want to value copy
+ * @returns the same item but not with reference semantics
+ *
+ */
+export declare const deepCopy: <T>(item: T) => T;
+/**
  * 10 good colors that work together
  */
 export declare let scheme1: string[];

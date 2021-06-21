@@ -1,3 +1,4 @@
+import cloneDeep from "lodash.clonedeep";
 /**
  * Function that returns if the array is empty or not
  *
@@ -17,6 +18,16 @@ export const isEmpty = <T>(array: T[]): boolean => !(array.length > 0);
 export const copyArray = <T>(array: T[]): T[] =>
 	JSON.parse(JSON.stringify(array));
 
+/**
+ * Creates a deepCopy of the element passed in
+ *
+ * @param item any item that we want to value copy
+ * @returns the same item but not with reference semantics
+ *
+ */
+export const deepCopy = <T>(item: T): T => {
+	return cloneDeep(item);
+};
 /**
  * 10 good colors that work together
  */
