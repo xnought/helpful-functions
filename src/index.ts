@@ -1,4 +1,5 @@
 import cloneDeep from "lodash.clonedeep";
+
 /**
  * Function that returns if the array is empty or not
  *
@@ -9,25 +10,13 @@ import cloneDeep from "lodash.clonedeep";
 export const isEmpty = <T>(array: T[]): boolean => !(array.length > 0);
 
 /**
- * Creates a deep copy of an array
- *
- * @param array given any type of array
- * @returns new copy of the array with value semantics
- *
- */
-export const copyArray = <T>(array: T[]): T[] =>
-	JSON.parse(JSON.stringify(array));
-
-/**
  * Creates a deepCopy of the element passed in
  *
  * @param item any item that we want to value copy
  * @returns the same item but not with reference semantics
  *
  */
-export const deepCopy = <T>(item: T): T => {
-	return cloneDeep(item);
-};
+export const deepCopy = <T>(item: T): T => cloneDeep(item);
 
 /**
  * Getter function to fetch json data from given path
@@ -43,11 +32,13 @@ export const get = async (src: string, config: object = {}): Promise<JSON> => {
 };
 
 /**
+ * Creates Post request and returns the response
  *
  * @param src the url path or file path
  * @param payload the body request data wanting to be sent
  * @param config any other settings that can be added to the fetch js api
  * @returns json response
+ *
  */
 export const post = async (
 	src: string,

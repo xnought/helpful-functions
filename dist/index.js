@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logColors = exports.scheme1 = exports.deepCopy = exports.copyArray = exports.isEmpty = void 0;
+exports.scheme1 = exports.logColors = exports.post = exports.get = exports.deepCopy = exports.isEmpty = void 0;
 const lodash_clonedeep_1 = __importDefault(require("lodash.clonedeep"));
 /**
  * Function that returns if the array is empty or not
@@ -15,25 +15,58 @@ const lodash_clonedeep_1 = __importDefault(require("lodash.clonedeep"));
 const isEmpty = (array) => !(array.length > 0);
 exports.isEmpty = isEmpty;
 /**
- * Creates a deep copy of an array
- *
- * @param array given any type of array
- * @returns new copy of the array with value semantics
- *
- */
-const copyArray = (array) => JSON.parse(JSON.stringify(array));
-exports.copyArray = copyArray;
-/**
  * Creates a deepCopy of the element passed in
  *
  * @param item any item that we want to value copy
  * @returns the same item but not with reference semantics
  *
  */
-const deepCopy = (item) => {
-    return lodash_clonedeep_1.default(item);
-};
+const deepCopy = (item) => lodash_clonedeep_1.default(item);
 exports.deepCopy = deepCopy;
+/**
+ * Getter function to fetch json data from given path
+ *
+ * @param src the filepath or url path to the json data
+ * @returns json response
+ *
+ */
+const get = async (src, config = {}) => {
+    const response = await fetch(src, config);
+    const json = await response.json();
+    return json;
+};
+exports.get = get;
+/**
+ * Creates Post request and returns the response
+ *
+ * @param src the url path or file path
+ * @param payload the body request data wanting to be sent
+ * @param config any other settings that can be added to the fetch js api
+ * @returns json response
+ *
+ */
+const post = async (src, payload, config = {}) => {
+    const response = await fetch(src, {
+        ...config,
+        method: "POST",
+        body: JSON.stringify(payload),
+    });
+    const json = await response.json();
+    return json;
+};
+exports.post = post;
+/**
+ * This prints the string with the colors in the console
+ *
+ * @param array of colors
+ *
+ */
+const logColors = (arrayOfColors) => {
+    arrayOfColors.forEach((color) => {
+        console.log(`%c ${color}`, `color: ${color}`);
+    });
+};
+exports.logColors = logColors;
 /**
  * 10 good colors that work together
  */
@@ -49,18 +82,6 @@ exports.scheme1 = [
     "#ae2012",
     "#9b2226",
 ];
-/**
- * This prints the string with the colors in the console
- *
- * @param array of colors
- *
- */
-const logColors = (arrayOfColors) => {
-    arrayOfColors.forEach((color) => {
-        console.log(`%c ${color}`, `color: ${color}`);
-    });
-};
-exports.logColors = logColors;
 // const main = () => {
 // };
 // main();
