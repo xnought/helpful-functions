@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.scheme1 = exports.logColors = exports.post = exports.get = exports.deepCopy = exports.isEmpty = void 0;
 const lodash_clonedeep_1 = __importDefault(require("lodash.clonedeep"));
+const node_fetch_1 = __importDefault(require("node-fetch"));
 /**
  * Function that returns if the array is empty or not
  *
@@ -30,8 +31,8 @@ exports.deepCopy = deepCopy;
  * @returns json response
  *
  */
-const get = async (src, config = {}) => {
-    const response = await fetch(src, config);
+const get = async (src, config) => {
+    const response = await node_fetch_1.default(src, config);
     const json = await response.json();
     return json;
 };
@@ -45,10 +46,14 @@ exports.get = get;
  * @returns json response
  *
  */
-const post = async (src, payload, config = {}) => {
-    const response = await fetch(src, {
+const post = async (src, payload, config) => {
+    const response = await node_fetch_1.default(src, {
         ...config,
         method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
         body: JSON.stringify(payload),
     });
     const json = await response.json();
@@ -82,7 +87,7 @@ exports.scheme1 = [
     "#ae2012",
     "#9b2226",
 ];
-// const main = () => {
+// const main = async () => {
 // };
 // main();
 //# sourceMappingURL=index.js.map

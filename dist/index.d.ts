@@ -21,7 +21,7 @@ export declare const deepCopy: <T>(item: T) => T;
  * @returns json response
  *
  */
-export declare const get: (src: string, config?: object) => Promise<JSON>;
+export declare const get: (src: string, config?: object | undefined) => Promise<JSON>;
 /**
  * Creates Post request and returns the response
  *
@@ -31,7 +31,7 @@ export declare const get: (src: string, config?: object) => Promise<JSON>;
  * @returns json response
  *
  */
-export declare const post: (src: string, payload: object, config?: object) => Promise<JSON>;
+export declare const post: (src: string, payload: object, config?: object | undefined) => Promise<JSON>;
 /**
  * This prints the string with the colors in the console
  *

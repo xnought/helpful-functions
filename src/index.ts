@@ -1,4 +1,5 @@
 import cloneDeep from "lodash.clonedeep";
+import fetch from "node-fetch";
 
 /**
  * Function that returns if the array is empty or not
@@ -25,7 +26,7 @@ export const deepCopy = <T>(item: T): T => cloneDeep(item);
  * @returns json response
  *
  */
-export const get = async (src: string, config: object = {}): Promise<JSON> => {
+export const get = async (src: string, config?: object): Promise<JSON> => {
 	const response = await fetch(src, config);
 	const json = await response.json();
 	return json;
@@ -43,11 +44,15 @@ export const get = async (src: string, config: object = {}): Promise<JSON> => {
 export const post = async (
 	src: string,
 	payload: object,
-	config: object = {}
+	config?: object
 ): Promise<JSON> => {
 	const response = await fetch(src, {
 		...config,
 		method: "POST",
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+		},
 		body: JSON.stringify(payload),
 	});
 	const json = await response.json();
@@ -82,6 +87,6 @@ export let scheme1 = [
 	"#9b2226",
 ];
 
-// const main = () => {
+// const main = async () => {
 // };
 // main();
